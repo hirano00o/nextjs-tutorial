@@ -38,7 +38,7 @@ export default function Layout({children, home}) {
                 ) : (
                     <>
                         <Link href="/">
-                            <Image src="/images/profile.jpg" alt=""
+                            <Image src="/image/profile.jpg" alt=""
                                    priority
                                    className={utilStyles.borderCircle}
                                    height={108}
@@ -57,7 +57,7 @@ export default function Layout({children, home}) {
             <main>{children}</main>
             {!home && (
                 <div className={styles.backToHome}>
-                    <Link href="/">Back to home</Link>
+                    <Link href="/">👈Back to home</Link>
                 </div>
             )}
         </div>
