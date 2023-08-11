@@ -16,7 +16,7 @@ export function getSortedPostData() {
 
         return {
             id,
-            ...(matterResult.data as {date: string, title: string}),
+            ...(matterResult.data as { date: string, title: string }),
         };
     });
 
@@ -27,4 +27,27 @@ export function getSortedPostData() {
             return -1;
         }
     });
+}
+
+export function getAllPostIds() {
+    const fileNames = fs.readdirSync(postsDirectory)
+    return fileNames.map((fileName) => {
+        return {
+            params: {
+                id: fileName.replace(/\.md$/, '')
+            }
+        }
+    })
+}
+
+export function getPostData(id: string) {
+    const fullPath = path.join(postsDirectory, `${id}.md`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+    const matterResult = matter(fileContents)
+
+    return {
+        id,
+        ...(matterResult.data as { title: string, date: string })
+    }
 }
